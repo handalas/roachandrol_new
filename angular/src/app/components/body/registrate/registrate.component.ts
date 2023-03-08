@@ -109,18 +109,18 @@ export class RegistrateComponent implements OnInit {
         txtAsociacion: txtAso != null ? txtAso != '' ? txtAso: '' : ''
       }
 
-      this.preinscribirService.preinscribete(asistente).subscribe ( res =>{
+      /*this.preinscribirService.preinscribete(asistente).subscribe ( res =>{
         const dialogOK = this.dialog.open(RegisterOKComponent);
-        
+
         dialogOK.afterClosed().subscribe(result =>{
           this.form.reset();
         })
-        
+
       }, err =>{
         this.dialog.open(RegisterKOComponent, {data: {
           error: err
         }});
-      })
+      })*/
     }
 
   }
@@ -129,7 +129,7 @@ export class RegistrateComponent implements OnInit {
     return this.form.get('name');
   }
 
-  
+
   get surname(){
     return this.form.get('surname');
   }
