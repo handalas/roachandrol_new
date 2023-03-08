@@ -1,29 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Rol {
-	name: string;
-  sistema:string;
-	realiza: string;
-	tematica: string;
-	descripcion: string;
-}
-
-const ROL: Rol[] = [
-	{
-		name: 'Fragmentos extraña oscuridad',
-    sistema: 'Resurgir del dragón',
-		realiza: 'Handalas',
-	  tematica: 'dungeon-solid.svg',
-	  descripcion: 'Vais a meter piños a golems'
-	},
-  {
-		name: 'La verdad de los pulpos',
-    sistema: 'Llamada de Cthulhu',
-		realiza: 'Serkaz',
-	  tematica: 'cthulu.png',
-	  descripcion: 'La vais a flipar con los pulpos'
-	}
-];
+import { Rol } from 'src/app/interfaces/rol';
+import { read, utils } from 'xlsx';
 
 @Component({
   selector: 'app-rol',
@@ -32,11 +9,37 @@ const ROL: Rol[] = [
 })
 export class RolComponent implements OnInit {
 
-  rol = ROL;
+  rol:Rol[] = [];
+
+  //prueba excell
 
   constructor() { }
 
   ngOnInit(): void {
+    this.readFile();
   }
+
+  async readFile(){
+
+    const f = await (await fetch("../../../../../assets/docs/rol.xlsx")).arrayBuffer();
+    const wb = read(f);
+    const data = utils.sheet_to_json<Rol>(wb.Sheets[wb.SheetNames[0]]);
+    this.rol = [];
+
+    data.forEach( partida =>{
+      if(partida.tematica === 'fantasia'){
+        partida.tematica = 'dungeon-solid.svg';
+      }else if(partida.tematica === 'mitos'){
+        partida.tematica = 'cthulu.png';
+      }
+      this.rol.push(partida);
+    })
+
+  }
+
+  reload(){
+    this.readFile();
+  }
+
 
 }
