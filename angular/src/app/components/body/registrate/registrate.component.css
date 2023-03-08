@@ -1,0 +1,42 @@
+fieldset                    { border: 0px solid rgba(var(--dark2), 1); border-radius: 4px; margin: 0; padding: 0; }
+fieldset legend             { margin: 22px 0 8px 0; font-size: 1.3rem; font-weight: 200; width: 100%; }
+fieldset + fieldset         { margin-top: 25px; }
+input                       { height: 32px; line-height: 32px; padding: 5px; border-radius: 1; background: rgb(233, 131, 84); border: 1px solid rgba(var(--dark), 0.2); width: 100%; }
+select                      { height: 32px; line-height: 32px; padding: 5px; border-radius: 1; background:rgb(233, 131, 84); border: 1px solid rgba(var(--dark), 0.2); width: 100%; }
+.container-grid                 { display: grid; grid-template-columns: repeat(4, 1fr); grid-column-gap: 15px; grid-row-gap: 15px; }
+.container-grid label           { display: inline; margin: 5px 0; }
+.container-grid .field.buttons  { text-align: right; padding-top: 20px; grid-column-start: 3; grid-column-end: span 2; }
+.container-grid .field.x2       { grid-column-start: auto; grid-column-end: span 2; }
+button,
+.button,
+.btn,
+[type="button"],
+[type="submit"],
+[type="reset"]              { cursor: pointer; height: 36px; line-height: 18px; padding: 8px; color: rgba(var(--light), 1); border-radius: 4px; background: rgba(var(--coorp2), 1); border: 1px solid rgba(var(--dark), 0.2); width: auto; text-decoration: none; font-variant: small-caps; font-size: 1.35rem; }
+[type="reset"]              { background: rgba(var(--light), 1); color: rgba(var(--dark), 1); font-weight: 500; }
+
+.reset { background: rgba(var(--light), 1); color: rgba(var(--dark), 1); font-weight: 500; }
+
+@media screen and (max-width: 639px){
+    .container-grid                 { grid-template-columns: repeat(2, 1fr); }
+    .container-grid .field.buttons  { grid-column-start: 1; }
+}
+
+@media screen and (max-width: 479px){
+    .container-grid                 { grid-template-columns: repeat(1, 1fr); }
+    .container-grid .field.x2,
+    .container-grid .field.buttons  { grid-column-start: 1; grid-column-end: 1; }
+}
+
+.titulo{
+    color: rgba(var(--dark2), 1);
+    margin: .67em 0;
+    font-size: 2em;
+    padding: 8px 0;
+    font-weight: bold;
+   }
+
+.mandatory{
+color: red;
+display: inline;
+}

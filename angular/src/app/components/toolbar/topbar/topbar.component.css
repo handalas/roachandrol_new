@@ -1,0 +1,64 @@
+/*  TOPBAR */
+.topbar                     { width: 100%; height: 64px; font-family: "Montserrat", sans-serif; }
+.topbar .logo,
+.topbar .title              { width: auto; display: inline-block; }
+.topbar .title              { position: absolute; top: 0; color: rgba(var(--dark2), 1); font-size: 1.7rem; font-weight: 300; line-height: 60px; font-variant: small-caps; margin-left: 15px; }
+.topbar .logo img           { padding: 5px; width: 150px; filter: brightness(0.85) contrast(1) saturate(0.8) hue-rotate(-5deg); }
+.topbar .logoRoach           { float: right; width: auto; height: 64px; margin: 0 5px; position: relative; }
+.topbar .logoRoach div       { color: rgba(var(--light), 0.66); margin-top: 20px; padding: 4px 0 4px 4px; width: auto; display: inline-block; cursor: pointer; }
+.topbar .logoRoach span      { display: inline-block; pointer-events: none; }
+.topbar .logoRoach span + i  { padding-right: 5px; pointer-events: none; }
+.topbar .logoRoach img       { width: 100px; height: 120px; float: right;  margin: 8px 0; }
+
+@media screen and (max-width: 479px){
+    .topbar                 { height: 58px; }
+    .topbar .username       { height: 58px; }
+    .topbar .username div   { display: none; }
+    .topbar .logo img       { width: 96px; }
+    .topbar form            { width: 100%; padding: 0; }
+    .topbar form input      { border-radius: 0; border-width: 1px 0 0 0; }
+    .topbar form i          { top: 4px; right: 12px; }
+    .topbar .title          { font-size: 1.2rem; font-weight: 400; margin-left: 5px;  }
+}
+
+/* MENU */
+body                    { font-family: 'Poppins', sans-serif; font-size: 14px; line-height: 1; }
+.menu                   { position: relative; min-height: 45px; height: 10%; padding-top: 10px; }
+.menu > ul              { margin: 0; }
+.menu > ul > li         { list-style: none; display: inline-block; color: rgba(var(--light), 1); line-height: 45px; }
+.menu > ul li a         { text-decoration: none; color: rgba(var(--light), 1); display:block; padding: 0px 24px; }
+.menu > ul li a:hover   { background:black; color: whitesmoke; transition-duration: 0.3s; }
+.menu .toggleButton     { cursor: pointer; display: none; }
+.menu form              { width: auto; display: block; padding: 0; position: absolute; top: 0; right: 78px; }
+.menu form input        { height: 32px; line-height: 32px; padding: 0 30px 0 8px; color: rgba(var(--light), 1); border-radius: 5px; background: rgba(var(--dark), 0.3); border: 1px solid rgba(var(--dark), 0.5); transition: all 0.3s ease; }
+.menu form i            { position: absolute; top: 11px; right: 5px; font-size: 24px; color: rgba(var(--light), 1);}
+.active                 { text-decoration: overline !important;  }
+
+.menu .sliders                  { width: auto; display: block; padding: 0; position: absolute; top: 0; right: 15px; }
+.menu .sliders a                { margin: 0; width: 32px; height: 32px; padding: 0 !important; position: relative; top: 6px; left: -2px; font-size: 32px; line-height: 32px; text-align: center; }
+.menu > ul li.sliders a:hover   { background: rgba(var(--coorp2), 1); }
+.menu .sliders a i::before      { transition: all 0.3s ease; transition-property: background, color, transform; transform: rotate(0deg); display: block; color: rgba(var(--light), 0.8); }
+.menu .sliders a.show i::before { transform: rotate(90deg); color: rgba(var(--light), 1); }
+.menu .sliders a.show i::after  { content: ""; color: #fff; background: rgba(var(--coorp2), 1); border: 2px solid rgba(var(--light), 1); border-radius: 50px; }
+.menu .sliders a i::after       { content: ""; background: transparent; color: transparent; width: 12px; height: 12px; line-height: 12px; display: inline-block; position: absolute; right: 2px; bottom: 10px; padding-top: 1px; transition: all 0.3s ease; transition-property: background, color, transform, border-color; }
+
+
+@media screen and (min-width: 640px){
+    .menu li:last-child form{ right: 15px; }
+}
+
+@media screen and (max-width: 800px) and (min-width: 640px){
+    .menu form input        { width: 32px; padding: 0; color: transparent;}
+    .menu form i            { pointer-events: none; }
+    .menu form input:focus  { width: 200px; padding: 0 30px 0 8px; color: rgba(var(--light), 1); background: rgba(var(--coorp3), 1); }
+}
+
+@media screen and (max-width: 639px){
+    .menu .toggleButton     { display: block; border: 0 none; height: 44px; font-size: 32px; padding: 0 8px; position: absolute; top: 0; right: 0; }
+    .menu > ul              { height: 0; background: rgba(var(--coorp2), 1); border: 1px solid rgba(var(--coorp2), 1); padding: 0; overflow: hidden; position: absolute; top: 42px; right: 0; }
+    .menu >ul li:first-child{ margin-top: 46px; }
+    .menu > ul.showing      { height: auto; }
+    .menu > ul.showing li   { display: block; width: 150px; text-align: left; padding: 0; }
+    .menu form              { right: 0; width: 100%; }
+    .menu form input        { border-radius: 0; }
+}
