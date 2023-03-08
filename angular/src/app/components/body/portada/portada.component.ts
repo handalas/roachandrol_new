@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,17 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortadaComponent implements OnInit {
 
-  images = [700, 800, 807].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  constructor(private router:Router) {
 
- 
-
-  constructor() {
-  
   }
 
   ngOnInit(): void {
   }
 
- 
+  goToInscribete(){
+    this.router.navigateByUrl('registrate');
+  }
 
 }

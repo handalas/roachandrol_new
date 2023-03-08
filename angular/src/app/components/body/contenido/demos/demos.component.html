@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Demostración</th>
+      <th scope="col">La realiza</th>
+      <th scope="col">Temática</th>
+      <th scope="col">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let demo of demos; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ demo.name }}
+      </td>
+      <td>{{ demo.realiza }}</td>
+      <td>
+        <img [src]="'../../../../assets/img/icons/' + demo.tematica"
+          class="me-2"
+          style="width: 20px"
+        />
+      </td>
+      <td>{{demo.descripcion}} </td>
+    </tr>
+  </tbody>
+</table>

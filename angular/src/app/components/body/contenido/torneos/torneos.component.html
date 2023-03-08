@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Torneo</th>
+      <th scope="col">Juego</th>
+      <th scope="col">La realiza</th>
+      <th scope="col">Temática</th>
+      <th scope="col">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let torneo of torneos; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ torneo.name }}
+      </td>
+      <td>{{ torneo.sistema }}</td>
+      <td>{{ torneo.realiza }}</td>
+      <td>
+        <img [src]="'../../../../assets/img/icons/' + torneo.tematica"
+          class="me-2"
+          style="width: 20px"
+        />
+      </td>
+      <td>{{torneo.descripcion}} </td>
+    </tr>
+  </tbody>
+</table>

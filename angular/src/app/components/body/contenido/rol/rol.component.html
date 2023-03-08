@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Partida</th>
+      <th scope="col">Sistema</th>
+      <th scope="col">La realiza</th>
+      <th scope="col">Temática</th>
+      <th scope="col">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rol of rol; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ rol.name }}
+      </td>
+      <td>{{ rol.sistema }}</td>
+      <td>{{ rol.realiza }}</td>
+      <td>
+        <img [src]="'../../../../assets/img/icons/' + rol.tematica"
+          class="me-2"
+          style="width: 20px"
+        />
+      </td>
+      <td>{{rol.descripcion}} </td>
+    </tr>
+  </tbody>
+</table>
