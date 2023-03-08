@@ -1,27 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Demo {
-	name: string;
-	realiza: string;
-	tematica: string;
-	descripcion: string;
-}
-
-const DEMO: Demo[] = [
-	{
-		name: 'Comer papa frita ',
-		realiza: 'Handalas',
-	  tematica: 'dice-d6-solid.svg',
-	  descripcion: 'Juego de mesa de comer una papa frita'
-	},
-  {
-		name: 'Danza del huevo Roach edition',
-		realiza: 'Serkaz',
-	  tematica: 'dice-d6-solid.svg',
-	  descripcion: 'Lo mismo que el original pero da gracias si sales vivo'
-	}
-];
-
+import { Demo } from 'src/app/interfaces/demo';
+import { read, utils } from 'xlsx';
 @Component({
   selector: 'app-demos',
   templateUrl: './demos.component.html',
@@ -29,11 +8,29 @@ const DEMO: Demo[] = [
 })
 export class DemosComponent implements OnInit {
 
-  demos = DEMO;
+  demos:Demo[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.readFile();
+  }
+
+  async readFile(){
+
+    const f = await (await fetch("../../../../../assets/docs/demos.xlsx")).arrayBuffer();
+    const wb = read(f);
+    const data = utils.sheet_to_json<Demo>(wb.Sheets[wb.SheetNames[0]]);
+    this.demos = [];
+
+    data.forEach( partida =>{
+      this.demos.push(partida);
+    })
+
+  }
+
+  reload(){
+    this.readFile();
   }
 
 }

@@ -1,30 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Torneo {
-	name: string;
-  sistema:string;
-	realiza: string;
-	tematica: string;
-	descripcion: string;
-}
-
-const TORNEOS: Torneo[] = [
-	{
-		name: 'Warcry tu puta madre',
-    sistema: 'Warcry',
-		realiza: 'Handalas',
-	  tematica: 'galactic-senate.svg',
-	  descripcion: 'Vais a mataros unos a otros con pistolitas grises'
-	},
-  {
-		name: 'Blood bowl hora de las tortas',
-    sistema: 'Blood Bowl 7',
-		realiza: 'Serkaz',
-	  tematica: 'football-ball-solid.svg',
-	  descripcion: '14 tios dandose hostias, a veces hay una pelotita por ahi'
-	}
-];
-
+import { Torneo } from 'src/app/interfaces/torneo';
+import { read, utils } from 'xlsx';
 @Component({
   selector: 'app-torneos',
   templateUrl: './torneos.component.html',
@@ -32,11 +8,31 @@ const TORNEOS: Torneo[] = [
 })
 export class TorneosComponent implements OnInit {
 
-  torneos = TORNEOS;
+  torneos:Torneo[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.readFile();
   }
 
+  async readFile(){
+
+    const f = await (await fetch("../../../../../assets/docs/torneos.xlsx")).arrayBuffer();
+    const wb = read(f);
+    const data = utils.sheet_to_json<Torneo>(wb.Sheets[wb.SheetNames[0]]);
+    this.torneos = [];
+
+    data.forEach( partida =>{
+      if(partida.tematica === 'senate'){
+        partida.tematica = 'galactic-senate.svg';
+      }
+      this.torneos.push(partida);
+    })
+
+  }
+
+  reload(){
+    this.readFile();
+  }
 }
